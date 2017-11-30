@@ -18,7 +18,18 @@ function nav(state = initialNavState, action) {
       break;
     case actionConstants.DISPLAY_LOGIN:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Registration' }),
+        NavigationActions.navigate({ routeName: 'Login' }),
+        state,
+      );
+      break;
+    case actionConstants.DISPLAY_MAIN_PAGE:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Main' }),
+          ],
+        }),
         state,
       );
       break;
@@ -28,9 +39,15 @@ function nav(state = initialNavState, action) {
         state,
       );
       break;
-    case actionConstants.DISPLAY_SEARCH_PAGE:
+    case actionConstants.DISPLAY_INTERNET_ERROR_PAGE:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Search' }),
+        NavigationActions.navigate({ routeName: 'Internet' }),
+        state,
+      );
+      break;
+    case actionConstants.GO_BACK:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
         state,
       );
       break;
@@ -38,7 +55,6 @@ function nav(state = initialNavState, action) {
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }
-
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 }

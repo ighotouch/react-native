@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Splash from '../components/splash';
-import { initSessionState } from '../../../redux/auth/actions';
-import { launchApp } from '../../../redux/auth/actions';
+import { initSessionState, launchApp } from '../../../redux/auth/actions';
+import { toggleNetworkState } from '../../../redux/app/actions';
 import navigationActions from '../../../navigation/modules/actions';
 
-console.log(initSessionState);
 const mapStateToProps = (state) => {
   const user = state.AuthReducer.get('user');
   const idToken = state.AuthReducer.get('idToken');
@@ -20,6 +19,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       getInitSessionState: bindActionCreators(initSessionState, dispatch),
       launchApp: bindActionCreators(launchApp, dispatch),
+      toggleNetworkState: bindActionCreators(toggleNetworkState, dispatch),
       launchLoginScene: bindActionCreators(navigationActions, dispatch),
     },
   };

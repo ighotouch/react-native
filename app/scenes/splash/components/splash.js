@@ -8,20 +8,18 @@ const bg = require('../../../assets/red_bk.png');
 
 export default class SplashScene extends Component {
   componentDidMount() {
-    //this.props.actions.getInitSessionState();
-    setTimeout(() => {
-      this.props.actions.launchApp(); 
-    }, 3000);
-    
+    this.props.actions.getInitSessionState();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return this.props.idToken != nextProps.idToken;
   }
   componentDidUpdate() {
-      
-    
+    setTimeout(() => {
+      this.launchApp();
+    }, 3000);
   }
+
   launchApp() {
     if (this.props.user.token !== undefined) {
       // display main scene

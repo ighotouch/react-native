@@ -53,7 +53,6 @@ export const loginUser = (userEmail, pass) => (dispatch) => {
   })
     .then(response => response.json())
     .then((responseJson) => {
-      console.log(JSON.stringify(responseJson.data));
       if (responseJson.code === '302') {
         dispatch({
           type: authActons.LOGIN_ERROR,
@@ -63,7 +62,7 @@ export const loginUser = (userEmail, pass) => (dispatch) => {
         try {
           dispatch({
             type: authActons.LOGIN_SUCCESS,
-            payload: JSON.stringify(responseJson.data),
+            payload: responseJson.data,
           });
         } catch (error) {
           // Error saving data

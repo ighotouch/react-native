@@ -57,10 +57,7 @@ export default class Registration extends Component {
             password:'',
             loading:null
         }
-        NetInfo.addEventListener('connectionChange',(isConnected) =>{
-            console.log(isConnected)
-            alert('netwk changed'+JSON.stringify(isConnected));
-        })
+    
         this.launchRegistrationScene = this.launchRegistrationScene.bind(this)
     }
 

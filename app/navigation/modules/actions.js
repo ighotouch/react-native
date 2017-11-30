@@ -3,7 +3,8 @@ const navigationActons = {
   DISPLAY_REGISTRATION: 'DISPLAY_REGISTRATION',
   DISPLAY_MAIN_PAGE: 'DISPLAY_MAIN_PAGE',
   DISPLAY_PRODUCT_PAGE: 'DISPLAY_PRODUCT_PAGE',
-  DISPLAY_ERROR_PAGE: 'DISPLAY_ERROR_PAGE',
+  DISPLAY_INTERNET_ERROR_PAGE: 'DISPLAY_INTERNET_ERROR_PAGE',
+  GO_BACK: 'GO_BACK',
   displayLoginPage: () => ({
     type: navigationActons.DISPLAY_LOGIN,
   }),
@@ -13,8 +14,11 @@ const navigationActons = {
   displayRegistrationPage: () => ({
     type: navigationActons.DISPLAY_REGISTRATION,
   }),
-  displayErrorPage: () => ({
-    type: navigationActons.DISPLAY_ERROR_PAGE,
+  displayInternetErrorPage: () => ({
+    type: navigationActons.DISPLAY_INTERNET_ERROR_PAGE,
+  }),
+  back: () => ({
+    type: navigationActons.GO_BACK,
   }),
 };
 

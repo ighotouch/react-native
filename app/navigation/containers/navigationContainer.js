@@ -7,7 +7,7 @@ import SlashScene from '../../scenes/splash/containers/splashContainer';
 import LoginScene from '../../scenes/login/containers/loginContainer';
 import RegistrationScene from '../../scenes/registration/components/registration';
 import MainScene from '../../scenes/main/components/mainSceneDrawerNavigation';
-import NetworkErrorScene from '../../scenes/networkErrorScene/components/networkError';
+import NetworkErrorScene from '../../scenes/networkErrorScene/containers/networkErrorContainer';
 
 export const AppNavigator = StackNavigator({
   Splash: {
