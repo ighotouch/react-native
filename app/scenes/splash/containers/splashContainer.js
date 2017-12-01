@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch) {
       getInitSessionState: bindActionCreators(initSessionState, dispatch),
       launchApp: bindActionCreators(launchApp, dispatch),
       toggleNetworkState: bindActionCreators(toggleNetworkState, dispatch),
-      launchLoginScene: bindActionCreators(navigationActions, dispatch),
+      navigationActions: bindActionCreators(navigationActions, dispatch),
     },
   };
 }

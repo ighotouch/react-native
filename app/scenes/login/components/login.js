@@ -33,10 +33,6 @@ export default class LoginScene extends Component {
     }
   }
 
-  componentDidFocus(){
-    console.log('component did focus');
-  }
-
   render() {
     return (
       <Container>

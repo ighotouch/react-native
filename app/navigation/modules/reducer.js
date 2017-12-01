@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import actionConstants from './actions';
 import { AppNavigator } from '../containers/navigationContainer';
+import routes from '../../routes';
 
 // Start with two routes: The Main screen, with the Splash screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Splash');
@@ -12,13 +13,13 @@ function nav(state = initialNavState, action) {
   switch (action.type) {
     case 'Splash':
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Splash' }),
+        NavigationActions.navigate({ routeName: routes.SPLASH }),
         state,
       );
       break;
     case actionConstants.DISPLAY_LOGIN:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
+        NavigationActions.navigate({ routeName: routes.LOGIN }),
         state,
       );
       break;
@@ -27,7 +28,7 @@ function nav(state = initialNavState, action) {
         NavigationActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'Main' }),
+            NavigationActions.navigate({ routeName: routes.MAIN }),
           ],
         }),
         state,

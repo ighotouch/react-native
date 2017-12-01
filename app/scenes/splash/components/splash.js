@@ -7,27 +7,40 @@ const splashLogo = require('../../../assets/splash_logo.png');
 const bg = require('../../../assets/red_bk.png');
 
 export default class SplashScene extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+    };
+  }
   componentDidMount() {
+    console.log('did mount');
     this.props.actions.getInitSessionState();
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.idToken != nextProps.idToken;
+    return this.props.user !== nextProps.user;
   }
   componentDidUpdate() {
+    console.log('update');
     setTimeout(() => {
       this.launchApp();
     }, 3000);
   }
 
   launchApp() {
-    if (this.props.user.token !== undefined) {
+    this.setState({
+      user: JSON.parse(this.props.user),
+    });
+
+    console.log(this.state.user);
+    if (this.state.user.token !== undefined) {
       // display main scene
-      console.log(this.props.navigationActions());
-      this.props.launchApp();
+      console.log('user is logged in');
+      this.props.actions.navigationActions.displayMainPage();
       return;
     }
-    this.props.actions.launchLoginScene.displayLoginPage();
+    this.props.actions.navigationActions.displayLoginPage();
   }
   render() {
     return (
@@ -51,6 +64,6 @@ export default class SplashScene extends Component {
 
 SplashScene.propTypes = {
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
+ // user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
