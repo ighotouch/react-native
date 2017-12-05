@@ -9,9 +9,28 @@ const launcherIcon = require('../../../assets/ic_launcher.png');
 const gasStationBackground = require('../../../assets/gas_station.png');
 
 export default class LoginScene extends Component {
+  componentWillMount() {
+    console.log('component will mount');
+    if (this.props.user.token !== undefined) {
+      this.props.actions.navigationActions.displayMainPage();
+    }
+  }
   componentDidMount() {
-    //AsyncStorage.clear();
-   // this.props.loginUser('test', 'terer');
+    console.log('component did mount');
+    console.log(this.props.isConnected);
+    this.props.actions.toggleNetworkState();
+  }
+
+
+  componentDidUpdate() {
+    console.log('component did update');
+    if (!this.props.isConnected) {
+      this.props.actions.navigationActions.displayInternetErrorPage();
+    }
+
+    if (this.props.user.token !== undefined) {
+      this.props.actions.navigationActions.displayMainPage();
+    }
   }
 
   render() {
@@ -28,7 +47,7 @@ export default class LoginScene extends Component {
             />
             <Text style={styles.title}>Zee Oil &amp; Gas</Text>
           </View>
-          <LoginFormField navigation={this.props.navigation} loginUser={this.props.loginUser} style={{ width: '75%', borderWidth: 1, marginTop: 221 }} />
+          <LoginFormField navigation={this.props.navigation} loginUser={this.props.actions.loginUser} style={{ width: '75%', borderWidth: 1, marginTop: 221 }} />
         </Image>
       </Container>
     );

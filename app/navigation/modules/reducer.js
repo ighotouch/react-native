@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import actionConstants from './actions';
 import { AppNavigator } from '../containers/navigationContainer';
+import routes from '../../routes';
 
 // Start with two routes: The Main screen, with the Splash screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Splash');
@@ -12,13 +13,24 @@ function nav(state = initialNavState, action) {
   switch (action.type) {
     case 'Splash':
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Splash' }),
+        NavigationActions.navigate({ routeName: routes.SPLASH }),
         state,
       );
       break;
     case actionConstants.DISPLAY_LOGIN:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Registration' }),
+        NavigationActions.navigate({ routeName: routes.LOGIN }),
+        state,
+      );
+      break;
+    case actionConstants.DISPLAY_MAIN_PAGE:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: routes.MAIN }),
+          ],
+        }),
         state,
       );
       break;
@@ -28,9 +40,15 @@ function nav(state = initialNavState, action) {
         state,
       );
       break;
-    case actionConstants.DISPLAY_SEARCH_PAGE:
+    case actionConstants.DISPLAY_INTERNET_ERROR_PAGE:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Search' }),
+        NavigationActions.navigate({ routeName: 'Internet' }),
+        state,
+      );
+      break;
+    case actionConstants.GO_BACK:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
         state,
       );
       break;
@@ -38,7 +56,6 @@ function nav(state = initialNavState, action) {
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }
-
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 }

@@ -14,7 +14,7 @@ export default function authReducer(
     case actions.LOGIN_SUCCESS:
       return state.set('user', action.payload);
     case actions.INIT_SESSION_STATE:
-      return state.set('idToken', action.token);
+      return state.set('user', action.user);
     case actions.LOGOUT:
       return initState;
     default:

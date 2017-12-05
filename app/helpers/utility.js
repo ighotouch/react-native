@@ -6,8 +6,10 @@ export function clearToken() {
 }
 export function getToken() {
   try {
-    const idToken = AsyncStorage.getItem('token');
-    return idToken;
+    const user = AsyncStorage.getItem('user', (err, result) => (
+      JSON.parse(result)
+    ));
+    return user;
   } catch (err) {
     clearToken();
     return new Map();

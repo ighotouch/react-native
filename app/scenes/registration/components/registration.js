@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Image } from 'react-native';
-import { Container, Text, Button, Header, Left, Right, Title, Icon, Body } from 'native-base';
+import { StatusBar, Image } from 'react-native';
+import { Container, Text, Button, Header, Left, Right, Icon, Body } from 'native-base';
 import styles from '../styles';
 import Registration from '../../../components/registrationForm';
 
@@ -31,7 +31,7 @@ export default props => (
       style={styles.container}
       source={bg}
     >
-      <Registration navigation={() => props.navigation} style={{width: '75%', borderWidth: 1, marginTop:221}}/>
+      <Registration navigation={() => props.navigation} style={{ width: '75%', borderWidth: 1, marginTop: 221 }} />
     </Image>
   </Container>
 );

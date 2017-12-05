@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 import { getToken } from '../../helpers/utility';
 import navigationActions from '../../navigation/modules/actions';
 
@@ -16,9 +17,9 @@ const authActons = {
 };
 
 export const initSessionState = () => (dispatch) => {
-  getToken().then(token => dispatch({
+  getToken().then(user => dispatch({
     type: authActons.INIT_SESSION_STATE,
-    token,
+    user,
   }));
 };
 
@@ -53,7 +54,6 @@ export const loginUser = (userEmail, pass) => (dispatch) => {
   })
     .then(response => response.json())
     .then((responseJson) => {
-      console.log(JSON.stringify(responseJson.data));
       if (responseJson.code === '302') {
         dispatch({
           type: authActons.LOGIN_ERROR,
@@ -61,9 +61,11 @@ export const loginUser = (userEmail, pass) => (dispatch) => {
         });
       } else {
         try {
-          dispatch({
-            type: authActons.LOGIN_SUCCESS,
-            payload: JSON.stringify(responseJson.data),
+          AsyncStorage.setItem('user', JSON.stringify(responseJson.data), () => {
+            dispatch({
+              type: authActons.LOGIN_SUCCESS,
+              payload: responseJson.data,
+            });
           });
         } catch (error) {
           // Error saving data

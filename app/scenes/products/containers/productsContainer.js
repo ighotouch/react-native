@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Login from '../components/login';
+import ProductScene from '../components/productsScene';
 import { loginUser } from '../../../redux/auth/actions';
 import { toggleNetworkState } from '../../../redux/app/actions';
 import navigationActions from '../../../navigation/modules/actions';
@@ -24,4 +24,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductScene);

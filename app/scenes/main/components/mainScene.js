@@ -3,6 +3,7 @@ import { View, Image, Dimensions } from 'react-native';
 import { Container, Text, Button, Icon, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import GridButton from '../../../components/gridNavButton';
+import routes from '../../../routes';
 import styles from './styles';
 
 const slideOne = require('../../../assets/slide_one.png');
@@ -51,7 +52,7 @@ export default class MainScene extends Component {
           <Row style={{ flex: 3.7 }} >
             <Col style={{ flex: 1 }}>
               <Row style={[styles.thumbnailBox, { flex: 1 }]} >
-                <GridButton icon={orderIcon} title="New Order" subtitle="Place order" navigation={this.props.navigation} />
+                <GridButton icon={orderIcon} title="New Order" subtitle="Place order" navigation={this.props.navigation} route={routes.PRODUCTS} />
               </Row>
               <Row style={[styles.thumbnailBox, { flex: 1, borderTopColor: '#EBEBEB', borderTopWidth: 1 }]}>
                 <GridButton icon={tankIcon} title="Tank Meter" subtitle="Monitor your tank" navigation={this.props.navigation} />
